@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内容渲染指令</title>
+</head>
+<body>
+    <h2>内容渲染指令</h2>
+    <div id="app">
+        <h3>1.v-text</h3>
+        <p v-text="username">姓名：</p>
+        <p v-text="gender">性别：</p>
+        <p v-text="info"></p>
+        <p>缺点：v-text会覆盖元素原有的内容</p>
+        <hr>
+        <h3>2.插值表达式：{{ }}</h3>
+        <p>姓名：{{ username }}</p>
+        <p>性别：{{ gender }}</p>
+        <p>{{ info }}</p>
+        <p>常用，但无法解析标签字符串</p>
+        <hr>
+        <h3>3.v-html</h3>
+        <p v-html="username">姓名：</p>
+        <p v-html="gender">性别：</p>
+        <p v-html="info"></p>
+        <p>会覆盖元素原有的内容，但可以识别标签字符串，将标签字符串渲染成HTML内容</p>
+    </div>
+
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:'#app',
+            //这里如果写的是p标签，那么vue只控制第一个p标签，其他的p标签都没有被纳入vue的控制范围之内
+            data: {
+                username:'Lanky',
+                gender:'female',
+                info:'<h2 style = "color : red; font-weight : 700 ">Lanky学vue2.0</h2>'
+            }
+        })
+    </script>
+</body>
+</html>

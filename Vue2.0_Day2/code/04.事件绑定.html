@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+</head>
+<body>
+    <h2>事件绑定</h2>
+    <h3>v-on:指令------>可以被简写成@ 如v-on:click可以被写成@click</h3>
+    <div id="app">
+        <p>count的数值是：{{ count }}</p>
+        <button v-on:click="add(2)">+2</button>
+        <!-- 在绑定事件处理函数时，可以用 () 来进行传递参数,如果不传递参数，()写不写都可以，但要传递参数就要写() -->
+        <button @click="sub">-1</button>
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const app = new Vue( {
+            el:'#app',
+            data: {
+                count:0
+            },
+            // methods的作用是定义事件的处理函数
+            methods: {
+                add(n) {
+                    // 在methods处理函数中，this就是new出来的vm实例对象
+                    this.count+=n;
+                },
+                // 写法同add: function() {},vue中实际开发很少这么写
+                sub() {
+                    this.count--;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

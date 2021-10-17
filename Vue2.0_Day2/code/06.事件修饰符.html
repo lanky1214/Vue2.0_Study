@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+</head>
+<body>
+    <h2>vue提供了事件修饰符，对事件的触发进行控制</h2>
+    <h3>.prevent &nbsp;&nbsp;.stop</h3>
+    <div id="app">
+        <a href="http://www.baidu.com" @click.prevent="turnPage">点击跳转到百度</a>
+        <hr>
+        <div style="width: 100px; height: 150px; background-color:red; line-height: 150px; padding-left: 55px;" @click="divConsole">
+          <button @click.stop="btnConsole">按钮</button> 
+        </div>
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                
+            },
+            methods: {
+                // 原方法
+                // turnPage(e) {
+                //     e.preventDefault();// 阻止默认事件（在这里就是阻止点击后跳转页面事件）
+                //     console.log('跳转到百度页面');
+                // },
+                turnPage(e) {
+                    console.log('跳转到百度页面');
+                },
+                divConsole() {
+                    console.log('divConsole');
+                },
+                btnConsole() {
+                    console.log('btnConsole');
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>

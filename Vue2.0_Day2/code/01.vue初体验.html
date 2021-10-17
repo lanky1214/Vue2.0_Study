@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue初体验</title>
+</head>
+<body>
+    <!-- vue可以控制下面这个div，将数据填充到div内部 -->
+    <div id="app">{{test}}</div>
+
+    <!-- 导入vue的库文件，则在window全局就有了vue这个构造函数 -->
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        // 创建vue的实例对象
+        const vm = new Vue( {
+            // el属性是固定的写法，表示vue将对页面上的哪个元素进行控制，接收到的值是一个选择器
+            el:'#app',      // --------View视图---------
+            // data对象是要渲染到页面上的数据  -------Model数据源--------
+            data: {
+                test:'Hello Vue!' 
+            }
+
+        })         // ---------ViewModel整个vm实例对象----------
+
+        //vue调试工具里，左侧的root根节点指向el这个元素，点击root，右侧显示数据源，修改数据源data，el区域的数据会重新渲染
+        //验证-------数据驱动视图--------这一特点
+    </script>
+</body>
+</html>

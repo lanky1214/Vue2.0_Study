@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双向绑定指令</title>
+</head>
+<body>
+    <h2>双向绑定指令v-model</h2>
+    <div id="app">
+        <p>用法：在表单标签中可以用v-model指令与vm实例对象中的data双向绑定数据</p>
+        <span>双向绑定指令v-model:</span><input type="text" v-model="username"><br>
+        <span>属性绑定指令v-bind:</span><input type="text" :value="username"><br>
+        <select v-model="city">
+            <option value="">请选择城市</option>
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">广州</option>
+        </select>
+        <hr>
+        <h3>v-model的指令修饰符.number .trim .lazy</h3>
+        <span>.number:</span>
+        <input type="text" v-model.number="n1">+
+        <input type="text" v-model.number="n2">=<span>{{ n1+n2 }}</span><br>
+        <span>.trim:</span>
+        <input type="text" v-model.trim="username">
+        <button @click="showName">获取用户名</button>
+        <span></span> <br>
+        <span>.lazy:</span>
+        <input type="text" v-model.lazy="username">
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                username:"Lanky",
+                n1:1,
+                n2:2,
+                city:""
+            },
+            methods: {
+                 showName(e) {
+                     console.log(`获取到的用户名为："${this.username}"`);
+                     e.target.nextSibling.innerHTML = this.username;
+                 }
+            }
+        })
+    </script>
+</body>
+</html>

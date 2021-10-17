@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+</head>
+<body>
+    <h2>vue提供了内置变量：$event，获取原生DOM的事件对象</h2>
+    <div id="app">
+        <p>count的数值是：{{ count }}</p>
+        <button @click="add($event,1)">+1</button>
+        <h3>如果方法本身不用传参，则处理函数方法中的形参e则是触发该函数的事件对象，但如果方法需要传参，则要用$event来获取事件对象</h3>
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                count:0
+            },
+            methods: {
+                add(e,n){
+                    this.count+=n;
+                    if(this.count %2 ==0) {
+                        e.target.style.backgroundColor = 'red'
+                    }else {
+                        e.target.style.backgroundColor = ''
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

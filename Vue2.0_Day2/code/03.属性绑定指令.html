@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性绑定指令</title>
+</head>
+<body>
+    <h2>属性绑定指令</h2>
+    <div id="app">
+        <input type="text" v-bind:placeholder="tips">
+        <!-- <input type="text" v-bind:placeholder="tip"> -->
+        <br>
+        <img :src="photo" alt="" style="width: 100px;">
+        <p>vue官方约定：v-bind可以简写为:</p>
+        <p>使用了属性绑定指令若找不到对应数据会报错not defined on the instance but referenced during render</p>
+        <hr>
+        <p>在vue提供的模板渲染语法中，除了支持绑定简单的数据值之外，还支持JavaScript表达式的运算和调用方法等</p>
+        <p>1 + 1 的运算结果是：{{ 1+1 }}</p>
+        <p>{{ str }} 反转后的结果为： {{ str.split(' ').reverse().join(' ') }}</p>
+        <div :title="'box'+index">v-bind属性绑定值还可以实现字符串拼接</div>
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:'#app',
+            data: {
+                tips:'请输入文本内容',
+                photo:'https://cn.vuejs.org/images/logo.svg',
+                index:3,
+                str:'V U E . J S'
+            }
+        })
+    </script>
+</body>
+</html>
