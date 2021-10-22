@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器的基本使用</title>
+</head>
+<body>
+    <h2>过滤器的基本使用</h2>
+    <div id="app">
+        <h3>将message值首字母转化为大写</h3>
+        <p>获取到的message值是： {{ message | capi }}</p>
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                message:"hello vue.js"
+            },
+            // 过滤器函数必须被定义在filters节点之下
+            //  过滤器本质上是函数
+            filters: {
+                // 过滤器函数形参中的val，永远都是“管道符”前面的值
+                capi(val) {
+                   const first = val.charAt(0).toUpperCase();
+                   return first + val.slice(1);
+                //    过滤器中一定要有一个返回值
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -247,7 +247,7 @@ module.exports = {
 
 2. loader 的调用过程
 
-   ![image-20211019020517534](C:\Users\Lanky\AppData\Roaming\Typora\typora-user-images\image-20211019020517534.png)
+   ![image-20211019020517534](./md_image/image-20211019020517534.png)
 
 3.  打包处理 css 文件
 

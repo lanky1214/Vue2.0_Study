@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器immediate</title>
+</head>
+<body>
+    <h2>侦听器immediate选项</h2>
+    <div id="app">
+        <p>第一次进入页面时，用方法格式的侦听器无法立即执行侦听，如果有这个需求，可以使用对象格式的侦听器，修改immediate属性</p>
+        <input type="text" v-model="username">
+        <input type="text" v-model="">
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script src="./lib/jquery-v3.6.0.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                username:'',
+            },
+            // 侦听器要定义在watch节点之下
+            watch: {
+                // 对象格式的侦听器
+                username: {
+                    //数据发生变化时的处理函数
+                    handler(newVal) {
+                        console.log("新值："+newVal);
+                    },
+                    // 若要第一次进入页面就启用一次侦听器，则添加immediate选项修改属性值为true，默认为false
+                    // immediate的作用：控制侦听器是否自动触发一次
+                    immediate:true
+
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>

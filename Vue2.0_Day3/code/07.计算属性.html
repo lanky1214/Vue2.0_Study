@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算属性</title>
+  <script src="./lib/vue-2.6.12.js"></script>
+  <style>
+    #app {
+      float: left;
+      width: 600px;
+    }
+    #app2 {
+      float: right;
+      width: 600px;
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <span>R：</span>
+      <input type="text" v-model.number="r">
+    </div>
+    <div>
+      <span>G：</span>
+      <input type="text" v-model.number="g">
+    </div>
+    <div>
+      <span>B：</span>
+      <input type="text" v-model.number="b">
+    </div>
+    <hr>
+
+    <!-- 专门用户呈现颜色的 div 盒子 -->
+    <!-- :style代表动态绑定一个样式对象，它的值是一个{  }样式对象 -->
+    <!-- 当前的样式对象中，只包含backgroundColor背景颜色 -->
+    <div class="box" :style="{ backgroundColor: `rgb(${r}, ${g}, ${b})` }">
+      {{ `rgb(${r}, ${g}, ${b})` }}
+    </div>
+    <button @click="show">按钮</button>
+    <hr>
+    <p>在此demo中盒子样式的变化、盒子内部数据的变化与点击按钮输出的rgb值都是通过字符串拼接而成的，代码冗余，复用性差</p>
+    <p>此时就可以使用计算属性来改善代码</p>
+  </div>
+
+  <div id="app2">
+    <div>
+      <span>R：</span>
+      <input type="text" v-model.number="r">
+    </div>
+    <div>
+      <span>G：</span>
+      <input type="text" v-model.number="g">
+    </div>
+    <div>
+      <span>B：</span>
+      <input type="text" v-model.number="b">
+    </div>
+    <hr>
+
+    <!-- 专门用户呈现颜色的 div 盒子 -->
+    <div class="box" :style="{ backgroundColor: rgb }">
+      {{ rgb }}
+    </div>
+    <button @click="show">按钮</button>
+    <hr>
+    <p>此模块运用计算属性改善了代码，rgb作为一个计算属性，被定义成了方法格式</p>
+    <p>最终在这个方法中，要返回一个生成好的rgb(x,x,x)的字符串</p>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        // 红色
+        r: 0,
+        // 绿色
+        g: 0,
+        // 蓝色
+        b: 0
+      },
+      methods: {
+        // 点击按钮，在终端显示最新的颜色
+        show() {
+          console.log(`rgb(${this.r},${this.g},${this.b}`)
+        }
+      },
+    });
+    var vm2 = new Vue({
+      el: '#app2',
+      data: {
+        // 红色
+        r: 0,
+        // 绿色
+        g: 0,
+        // 蓝色
+        b: 0
+      },
+      // 所有的计算属性，都要定义到computed节点之下
+      // 计算属性在定义的时候，要定义成"方法格式"
+      computed : {
+        // rgb作为一个计算属性，被定义成了方法格式
+        // 最终在这个方法中，要返回一个生成好的rgb(x,x,x)的字符串
+          rgb() {
+            return `rgb(${this.r},${this.g},${this.b})`;
+          }
+      },
+      methods: {
+        // 点击按钮，在终端显示最新的颜色
+        show() {
+          console.log(this.rgb)
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

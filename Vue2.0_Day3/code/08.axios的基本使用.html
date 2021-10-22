@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios的基本使用</title>
+</head>
+<body>
+    <div>
+      script
+    </div>
+    <script src="./lib/axios.js"></script>
+    <script>
+       axios( {
+           //请求方式
+           method:"GET",
+        //    请求的地址
+           url:"http://www.liulongbin.top:3006/api/getbooks",
+        //    url中的查询参数，params是get方法传递参数的方法
+           params: {
+               id:1
+           }
+        //    请求参数体，data是post方法传递参数的方法
+        //    data: {}
+
+       }).then(result => {
+           console.log(result);
+       })
+    </script>
+</body>
+</html>

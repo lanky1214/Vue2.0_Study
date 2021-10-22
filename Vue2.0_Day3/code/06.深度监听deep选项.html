@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器deep选项</title>
+</head>
+<body>
+    <h2>侦听器deep选项</h2>
+    <div id="app">
+        <p>如果侦听的是一个对象，对象中的属性值发生了变化，无法被监听到。此时需要使用 deep 选项</p>
+        <input type="text" v-model="info.username">
+        <p><input type="text" v-model="infos.username"></p>
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script src="./lib/jquery-v3.6.0.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                info: {
+                    username:'admin'
+                },
+                infos: {
+                    username:'admin2'
+                }
+            },
+            // 侦听器要定义在watch节点之下
+            watch: {
+                // info(newVal) {
+                //     console.log(newVal);
+                // }  //此方法无法监听到info对象中username属性的变化
+                // 对象格式的侦听器
+                info: {
+                    //数据发生变化时的处理函数
+                    handler(newVal) {
+                        console.log(newVal);
+                    },
+                    // 开启深度监听，只要对象中任何一个属性变化了，都会触发对象的侦听器
+                    deep:true
+
+                },
+                // 监听对象单个属性值的变化，要给该对象属性加上单引号
+                'infos.username'(newVal) {
+                    console.log(newVal);
+}
+                
+            }
+        })
+    </script>
+</body>
+</html>

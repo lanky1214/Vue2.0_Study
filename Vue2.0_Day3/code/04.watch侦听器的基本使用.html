@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器的基本使用</title>
+</head>
+<body>
+    <h2>侦听器的基本使用</h2>
+    <div id="app">
+        <p>判断用户名是否被占用（老师的网站）</p>
+        <input type="text" v-model="username">
+    </div>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script src="./lib/jquery-v3.6.0.js"></script>
+    <script>
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                username:''
+            },
+            // 侦听器要定义在watch节点之下
+            watch: {
+                // 侦听器本质上是函数，监听哪个数据的变化，就将哪个数据的属性名作为方法名
+                username(newVal,oldVal) {
+                    // 侦听器的参数分别为数据变化前后的值，新值在前，旧值在后
+                    // console.log("新值："+newVal+"|旧值："+oldVal);
+                    if(newVal==='') return
+                    $.get("https://www.escook.cn/api/finduser/"+newVal,result => {
+                        console.log(result);
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

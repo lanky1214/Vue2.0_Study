@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私有过滤器和全局过滤器</title>
+</head>
+<body>
+    <h2>私有过滤器和全局过滤器</h2>
+    <div id="app">
+        <h3>将message值首字母转化为大写:id="app"</h3>
+        <p>获取到的message值是： {{ message | capi }}</p>
+    </div>
+    <div id="app2">
+        <h3>将message值首字母转化为大写:id="app2"（vue实例中无定义私有过滤器）</h3>
+        <p>获取到的message值是： {{ message | capi }}</p>
+    </div>
+    <hr>
+    <p>调用过滤器使用的是就近原则，调用过滤器方法时，如果能在私有过滤器上找到该方法，则使用的是私有过滤器，如果找不到，则到全局过滤器中查找该方法并调用</p>
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        Vue.filter('capi',val => {
+            const first = val.charAt(0).toUpperCase();
+            return "（这里调用的是全局过滤器）"+first + val.slice(1);
+        })
+        const vm = new Vue( {
+            el:"#app",
+            data: {
+                message:"first app"
+            },
+            // 过滤器函数必须被定义在filters节点之下
+            //  过滤器本质上是函数
+            filters: {
+                // 过滤器函数形参中的val，永远都是“管道符”前面的值
+                capi(val) {
+                   const first = val.charAt(0).toUpperCase();
+                   return "（这里调用的是私有过滤器）"+first + val.slice(1);
+                //    过滤器中一定要有一个返回值
+                }
+            }
+        })
+
+        const vm2 = new Vue( {
+            el:"#app2",
+            data: {
+                message:"second app"
+            }
+        })
+    </script>
+</body>
+</html>
