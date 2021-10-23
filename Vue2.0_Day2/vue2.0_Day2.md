@@ -28,7 +28,7 @@
 
 ​    **MVVM**是vue实现**数据驱动视图**和**双向数据绑定**的核心原理
 
-​     ![image-20211011031914590](C:\Users\Lanky\AppData\Roaming\Typora\typora-user-images\image-20211011031914590.png)
+​     ![image-20211011031914590](./md_image/1.png)
 
 > 数据驱动视图和双向数据绑定的底层原理是MVVM（Model数据源、View视图、ViewModel就是vue的实例）
 
