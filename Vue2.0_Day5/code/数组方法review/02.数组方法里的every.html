@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组方法里的every</title>
+</head>
+<body>
+    <script>
+        const arr = [
+            {id:1 , fruit:'苹果', status: true ,price:5, count:2},
+            {id:2 , fruit:'香蕉', status: true ,price:2, count:5},
+            {id:3 , fruit:'火龙果', status: true ,price:10, count:3}
+        ];
+        // 用every方法可以判断数组中是否每个对象都符合条件，只要有一个不符合，就会返回false
+        //当检索到不符合条件的对象时，也会直接退出循环
+        const status = arr.every(item => item.status)
+        console.log('status:'+status);
+        const ids = arr.every(item => item.id == 1 )
+        console.log('id:'+ids);
+    </script>
+</body>
+</html>

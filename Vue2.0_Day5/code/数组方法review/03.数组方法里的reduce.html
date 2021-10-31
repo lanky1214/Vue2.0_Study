@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组方法里的reduce</title>
+</head>
+<body>
+    <h3>计算数组元素相加后的总和</h3>
+    <p>array.reduce(function(total, currentValue, currentIndex, arr), initialValue)</p>
+    <p>function:处理函数</p>
+    <p>initialValue:初始值</p>
+    <p>arr.reduce((累加的结果,当前循环项)=>{},初始值)</p>
+    <p>reduce() 对于空数组是不会执行回调函数的</p>
+    <script>
+        const arr = [
+            {id:1 , fruit:'苹果', status: true ,price:5, count:2},
+            {id:2 , fruit:'香蕉', status: false ,price:2, count:5},
+            {id:3 , fruit:'火龙果', status: true ,price:10, count:3}
+        ];
+
+        //计算被选中的对象的总价
+        // 普通方法
+        // let amt = 0;
+        // arr.filter(item => item.status).forEach(item => {
+        //     amt += item.price*item.count;      
+        // })
+        // console.log(amt);
+
+        // reduce方法
+        const result = arr.filter(item => item.status).reduce((amt,item )=> amt+=item.count*item.price,0);
+        console.log(result);
+    </script>
+</body>
+</html>
